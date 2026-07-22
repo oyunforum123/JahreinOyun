@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jahrein) | Giriş</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0b0b0c;
+            color: #e0e0e0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- GİRİŞ EKRANI --- */
+        .welcome-screen {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: radial-gradient(circle, #1a0b2e 0%, #0b0b0c 100%);
+            position: relative;
+            padding: 0 50px;
+            z-index: 10;
+        }
+
+        .vural-img {
+            width: 30%;
+            height: 80vh;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.3);
+            border: 2px solid rgba(138, 43, 226, 0.5);
+        }
+
+        .login-box {
+            text-align: center;
+            z-index: 12;
+        }
+
+        .login-box h1 {
+            font-size: 42px;
+            margin-bottom: 25px;
+            color: #ffffff;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 0 0 15px rgba(138, 43, 226, 0.6);
+        }
+
+        .enter-btn {
+            background: linear-gradient(45deg, #8a2be2, #4a00e0);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            font-size: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(138, 43, 226, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .enter-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(138, 43, 226, 0.8);
+        }
+
+        /* --- JUMPSCARE KATMANI & ÖZEL EFEKTLER --- */
+        .jumpscare-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #000;
+            z-index: 9999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .jumpscare-container img {
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover; /* Boşlukları tamamen kapatır */
+            animation: earthquake 0.1s infinite;
+        }
+
+        .red-flash {
+            animation: redFlashTrigger 0.15s infinite;
+        }
+
+        /* DEPREM / DEHŞET SARSINTI ANİMASYONU */
+        @keyframes earthquake {
+            0% { transform: translate(0, 0) scale(1.05); }
+            20% { transform: translate(-8px, 10px) scale(1.05); }
+            40% { transform: translate(10px, -5px) scale(1.03); }
+            60% { transform: translate(-10px, -8px) scale(1.07); }
+            80% { transform: translate(8px, 8px) scale(1.04); }
+            100% { transform: translate(0, 0) scale(1.05); }
+        }
+
+        /* KIRMIZI FLAŞ ANİMASYONU */
+        @keyframes redFlashTrigger {
+            0% { background-color: rgba(0, 0, 0, 1); }
+            50% { background-color: rgba(139, 0, 0, 0.8); }
+            100% { background-color: rgba(0, 0, 0, 1); }
+        }
+
+        /* --- ANA SİTE İÇERİĞİ --- */
+        header {
+            background-color: #121214;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #8a2be2;
+        }
+
+        header .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #8a2be2;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        header nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        h2 {
+            font-size: 32px;
+            margin-bottom: 25px;
+            color: #ffffff;
+            border-left: 5px solid #8a2be2;
+            padding-left: 10px;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .video-card {
+            background-color: #121214;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #222;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 180px;
+            background-color: #252529;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+        }
+
+        .video-info {
+            padding: 15px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background-color: #070708;
+            color: #555;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .welcome-screen { flex-direction: column; justify-content: center; gap: 20px; padding: 20px; }
+            .vural-img { width: 45%; height: 30vh; }
+            .login-box h1 { font-size: 28px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- JUMPSCARE KATMANI -->
+    <div id="jumpscareArea" class="jumpscare-container red-flash">
+        <img id="jsGif" src="jumo.gif" alt="Jumpscare">
+        <!-- Ses dosyası sound.mp3 olarak buraya gömüldü -->
+        <audio id="jsAudio" src="sound.mp3" preload="auto"></audio>
+    </div>
+
+    <!-- GİRİŞ EKRANI -->
+    <section id="welcomeScreen" class="welcome-screen">
+        <img src="vural.png" alt="vural" class="vural-img">
+        <div class="login-box">
+            <h1>Jahrein Evreni Ahmet</h1>
+            <button class="enter-btn" onclick="startJumpscare()">Siteye Giriş Yap</button>
+        </div>
+        <img src="vural.png" alt="vural" class="vural-img">
+    </section>
+
+    <!-- ANA SİTE İÇERİĞİ -->
+    <div id="mainContent" style="display: none;">
+        <header>
+            <div class="logo">Vechiron</div>
+            <nav>
+                <a href="#videolar">Videolar</a>
+                <a href="#lore">Lore / Hikaye</a>
+            </nav>
+        </header>
+
+        <div class="container">
+            <section id="videolar">
+                <h2>Tüm Videolar</h2>
+                <div class="video-grid">
+                    <div class="video-card">
+                        <div class="video-placeholder">YouTube Videosu / Görseli</div>
+                        <div class="video-info"><h3>Bölüm 1: Başlangıç</h3></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Jahrein Evreni. Tüm Hakları Saklıdır.</p>
+        </footer>
+    </div>
+
+    <!-- JAVASCRIPT: DOĞRUDAN SES OYNATMA MOTORU -->
+    <script>
+        function startJumpscare() {
+            const docElm = document.documentElement;
+            const jumpscareArea = document.getElementById('jumpscareArea');
+            const gifImage = document.getElementById('jsGif');
+            const audio = document.getElementById('jsAudio');
+
+            // 1. ADIM: Tam Ekran Modunu Çalıştır
+            try {
+                if (docElm.requestFullscreen) { docElm.requestFullscreen(); } 
+                else if (docElm.mozRequestFullScreen) { docElm.mozRequestFullScreen(); } 
+                else if (docElm.webkitRequestFullscreen) { docElm.webkitRequestFullscreen(); } 
+                else if (docElm.msRequestFullscreen) { docElm.msRequestFullscreen(); }
+            } catch(e) {
+                console.log("Tam ekran kısıtlandı.");
+            }
+
+            // 2. ADIM: GIF'i Yenile ve Katmanı Aç
+            gifImage.src = "jumo.gif?t=" + new Date().getTime();
+            jumpscareArea.style.display = 'flex';
+
+            // 3. ADIM: sound.mp3 Dosyasını En Yüksek Sesle Oynat
+            audio.volume = 1.0; 
+            audio.currentTime = 0;
+            
+            // Doğrudan tıklama olayı içinde olduğu için tarayıcılar bu oynatmaya izin verir
+            audio.play().catch(function(error) {
+                console.log("Ses oynatılamadı, lütfen dosya adını ve uzantısını kontrol edin: " + error);
+            });
+
+            // 4. ADIM: 3 saniye sonra jumpscare ekranını kapat ve siteyi aç
+            setTimeout(function() {
+                jumpscareArea.style.display = 'none';
+                document.getElementById('welcomeScreen').style.display = 'none';
+                document.getElementById('mainContent').style.display = 'block';
+                audio.pause();
+            }, 3000); 
+        }
+    </script>
+
+</body>
+</html>
